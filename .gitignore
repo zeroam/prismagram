@@ -106,3 +106,6 @@ dist
 # prisma
 generated
 prisma.yml
+
+# vscode
+.vscode
