@@ -1,15 +1,16 @@
 import { prisma } from "../../../../generated/prisma-client";
-import { secretGenerator } from "../../../utils";
+import { secretGenerator, sendSecretMail } from "../../../utils";
 export default {
   Mutation: {
     requestSecret: async (_, args) => {
       const { email } = args;
       const loginSecret = secretGenerator();
-      console.log(loginSecret);
       try {
         await prisma.updateUser({ data: { loginSecret }, where: { email } });
+        await sendSecretMail(email, loginSecret);
         return true;
-      } catch {
+      } catch (error) {
+        console.log(error);
         return false;
       }
     },
