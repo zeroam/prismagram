@@ -32,6 +32,5 @@ export const sendSecretMail = async (address, secret) => {
 };
 
 export const generateToken = (id) => {
-  console.log(process.env.JWT_SECRET);
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
