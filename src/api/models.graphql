@@ -19,7 +19,7 @@ type User {
 
 type Post {
   id: ID!
-  location: String!
+  location: String
   caption: String!
   user: User!
   files: [File!]!
@@ -68,6 +68,8 @@ type UserProfile {
 
 type FullPost {
   post: Post!
+  files: [File!]!
   comments: [Comment!]
   likeCount: Int!
+  user: User!
 }
