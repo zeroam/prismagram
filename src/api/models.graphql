@@ -26,6 +26,9 @@ type Post {
   likes: [Like!]!
   comments: [Comment!]!
   isLiked: Boolean!
+  likeCount: Int!
+  createdAt: String
+  updatedAt: String
 }
 
 type Like {
@@ -64,12 +67,4 @@ type Message {
 type UserProfile {
   user: User!
   posts: [Post!]!
-}
-
-type FullPost {
-  post: Post!
-  files: [File!]!
-  comments: [Comment!]
-  likeCount: Int!
-  user: User!
 }
