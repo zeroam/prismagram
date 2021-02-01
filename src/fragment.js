@@ -1,24 +1,30 @@
 export const COMMENT_FRAGMENT = `
-  fragment CommentParts on Comment {
-    id
-    text
-    user {
-      username
-    }
+  id
+  text
+  user {
+    ${USER_FRAGMENT}
   }
 `;
 
 export const USER_FRAGMENT = `
-  fragment UserParts on User {
-    id
-    username
-  }
+  id
+  username
+  avatar
 `;
 
 export const FILE_FRAGMENT = `
-  fragment FileParts on File {
-    id
-    url
+  id
+  url
+`;
+
+export const MESSAGE_FRAGMENT = `
+  id
+  text
+  to {
+    ${USER_FRAGMENT}
+  }
+  from {
+    ${USER_FRAGMENT}
   }
 `;
 
@@ -28,19 +34,13 @@ export const FULL_POST_FRAGMENT = `
     location
     caption
     files {
-      id
-      url
+      ${FILE_FRAGMENT}
     }
     comments {
-      id
-      text
-      user {
-        username
-      }
+      ${COMMENT_FRAGMENT}
     }
     user {
-      id
-      username
+      ${USER_FRAGMENT}
     }
   }
 `;
@@ -49,7 +49,10 @@ export const ROOM_FRAGMENT = `
   fragment RoomParts on Room {
     id
     participants {
-      id
+      ${USER_FRAGMENT}
+    }
+    messages {
+      ${MESSAGE_FRAGMENT}
     }
   }
 `;
